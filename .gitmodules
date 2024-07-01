@@ -1,0 +1,9 @@
+[submodule "FEARTracker"]
+	path = FEARTracker
+	url = https://github.com/PinataFarms/FEARTracker.git
+[submodule "segment-anything"]
+	path = segment-anything
+	url = https://github.com/facebookresearch/segment-anything.git
+[submodule "LightGlue"]
+	path = LightGlue
+	url = https://github.com/cvg/LightGlue.git
