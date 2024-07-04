@@ -3,7 +3,7 @@ from lightglue import viz2d
 import matplotlib.pyplot as plt
 from gui import segment
 from lightglue.utils import numpy_image_to_torch, rbd
-from similarity import similarity
+from similarity import similarity, similarity_Dino
 from gui import segment
 import cv2
 import numpy as np
@@ -87,7 +87,7 @@ def getCoordsFrame(frame, initial_bbox, kpts1, kpts0, debug=False):
         return None, None
 
 
-def features_match(frame_init, frame, initial_bbox_scaled, feature_init, scale_x, scale_y, device, extractor, matcher, predictor, vertical=False, debug=False):
+def features_match(frame_init, frame, initial_bbox_scaled, feature_init, sim_th, scale_x, scale_y, device, extractor, matcher, predictor, processor, model, vertical=False, debug=False):
     
     if vertical:
         frame = cv2.resize(frame,(480,640),interpolation=cv2.INTER_AREA)
@@ -155,11 +155,11 @@ def features_match(frame_init, frame, initial_bbox_scaled, feature_init, scale_x
     
     if final_bbox is not None:
 
-        sim=np.round(similarity(feature_init,template_final),2)
+        sim=np.round(similarity_Dino(feature_init,template_final,processor,model, device),2)
         if debug:
             print("SIM", sim)
 
-        if sim > 0.6:
+        if sim > sim_th:
             
             #x1y1wh            
             c=myUtils.center_x1y1x2y2(final_bbox[0],final_bbox[1],final_bbox[2],final_bbox[3])
@@ -185,11 +185,10 @@ def features_match(frame_init, frame, initial_bbox_scaled, feature_init, scale_x
         if debug:
             cv2.waitKey(0)
         return False, None
-
-
-def runReID(tracker, count, frame_init, frame, initial_bbox_scaled, feature_init,scale_x, scale_y, device, extractor, matcher, predictor, vertical=False, debug=False):
     
-    response, initial_bbox_t=features_match(frame_init, frame,initial_bbox_scaled, feature_init, scale_x, scale_y, device, extractor, matcher, predictor, vertical=vertical)
+def runReID(tracker, count, frame_init, frame, initial_bbox_scaled, feature_init, sim_th, scale_x, scale_y, device, extractor, matcher, predictor, processor, model, vertical=False, debug=False):
+    
+    response, initial_bbox_t=features_match(frame_init, frame,initial_bbox_scaled, feature_init, sim_th, scale_x, scale_y, device, extractor, matcher, predictor, processor, model, vertical=vertical)
     if response==False:
         # cv2.putText(frame, "Frame "+str(count)+" Re-ID Failed", (150, 150),
         # cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 0), 3)

@@ -1,8 +1,6 @@
 import numpy as np
 import cv2
 from PIL import Image
-#import sys
-#sys.path.insert(0,'/home/vc/Documents/segment-anything/')
 
 from segment_anything import sam_model_registry, SamPredictor
 
