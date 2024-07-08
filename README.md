@@ -8,6 +8,8 @@
 
 [Cloud file repository](https://drive.google.com/drive/folders/19WiHA9QnI4Ecm0osdezpqwX7_yxnyjRW?usp=drive_link) 
 
+[Report no_video.pdf](task_no_video.pdf)
+
 [Report .pdf](https://drive.google.com/file/d/1mKxRuy86A6sYLx7pS7q3drV_CbpORqMY/view?usp=drive_link)
 
 
