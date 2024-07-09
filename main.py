@@ -109,7 +109,7 @@ def main(
 
                 # blur estimation
                 blur=np.round(myUtils.variance_of_laplacian(frame),2)
-                if (time.time()-start)>=3:
+                if (time.time()-start)>=5:
                     if blur>blur_th:
                         noReID=False
                 
@@ -190,10 +190,11 @@ def main(
 if __name__ == '__main__':
     
     parser = argparse.ArgumentParser(description='tracking routine')        
-    #parser.add_argument('--video_path',type=str, help='video_path', required=True)
+    
+    parser.add_argument('--video_path',type=str, help='video_path', required=True)
     
     #parser.add_argument('--video_path',type=str, help='video_path', default="/home/vc/Documents/EDGE/PXL_20240614_054927321.TS.mp4", required=False)
-    parser.add_argument('--video_path',type=str, help='video_path', default="/home/vc/Documents/EDGE/PXL_20240614_054110286.TS.mp4", required=False)
+    #parser.add_argument('--video_path',type=str, help='video_path', default="/home/vc/Documents/EDGE/PXL_20240614_054110286.TS.mp4", required=False)
     #parser.add_argument('--video_path',type=str, help='video_path', default="/home/vc/Documents/EDGE/PXL_20240614_055315498.TS.mp4", required=False)
 
     parser.add_argument('--config_path',type=str, help='config file path', default="FEARTracker/model_training/config", required=False)
