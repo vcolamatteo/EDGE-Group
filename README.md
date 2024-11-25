@@ -1,4 +1,4 @@
-# Real time SOT Repo
+# Real time SOT
 
 ### Materials
 
