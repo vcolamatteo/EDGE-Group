@@ -1,4 +1,4 @@
-# Real time SOT
+# Real-time SOT | EDGE-Group project report
 
 ### Materials
 
